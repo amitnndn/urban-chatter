@@ -23,14 +23,6 @@
 			<div class="jumbotron">
 				<img src="images/uc-banner-1920.jpg" class="img-responsive" />
 			</div>
-			<!-- div class="navigation">
-				<div class="nav_bar" id="primary_nav">
-					<a class="first">Home</a>
-					<a>About Us</a>
-					<a class="last">Contact Us</a>
-					<div class="clearfix"></div>
-				</div>
-			</div -->
 			<div id="home" class="content">
 				<div id="featured" class="row">
 					<h2>Featured Posts</h2>
@@ -168,17 +160,15 @@
 						</div>
 						<div class="modal-body row">
 							<div class="col-sm-5">
-								<form>
-									<div class="form-group">
-										<label for="username">Email Address</label>
-										<input autocomplete="off" type="email" class="form-control" id="username" placeholder="Enter Username">
-									</div>
-									<div class="form-group">
-										<label for="password">Password</label>
-										<input type="password" autocomplete="off" class="form-control" id="password" placeholder="Enter Password">
-									</div>
-									<button type="submit" class="btn btn-primary">Submit</button>
-								</form>
+								<div class="form-group">
+									<label for="username">Email Address</label>
+									<input autocomplete="off" type="email" class="form-control" id="username" placeholder="Enter Username">
+								</div>
+								<div class="form-group">
+									<label for="password">Password</label>
+									<input type="password" autocomplete="off" class="form-control" id="password" placeholder="Enter Password">
+								</div>
+								<button type="submit" class="btn btn-primary">Submit</button>
 							</div>
 							<div class="col-sm-5 col-sm-offset-2">
 								<button id="facebook_login" type="button" class="btn btn-primary btn-lg">Sign in with Facebook</button>
@@ -197,29 +187,27 @@
 						</div>
 						<div class="modal-body row">
 							<div class="col-sm-5">
-								<form>
-									<div class="form-group">
-										<label for="first_name">First Name</label>
-										<input autocomplete="off" type="text" class="form-control" id="first_name" placeholder="Enter First Name">
-									</div>
-									<div class="form-group">
-										<label for="last_name">First Name</label>
-										<input autocomplete="off" type="text" class="form-control" id="last_name" placeholder="Enter Last Name">
-									</div>
-									<div class="form-group">
-										<label for="email">Email Address</label>
-										<input autocomplete="off" type="email" class="form-control" id="email" placeholder="Enter Email Address">
-									</div>
-									<div class="form-group">
-										<label for="email">Enter a Password</label>
-										<input autocomplete="off" type="password" class="form-control" id="password" placeholder="Enter a Password">
-									</div>
-									<div class="form-group">
-										<label for="email">Re-enter Password</label>
-										<input autocomplete="off" type="password" class="form-control" id="reenter_password" placeholder="Re-enter Password">
-									</div>
-									<button type="submit" class="btn btn-primary">Submit</button>
-								</form>
+								<div class="form-group">
+									<label for="first_name">First Name</label>
+									<input autocomplete="off" type="text" class="form-control" id="first_name" placeholder="Enter First Name">
+								</div>
+								<div class="form-group">
+									<label for="last_name">Last Name</label>
+									<input autocomplete="off" type="text" class="form-control" id="last_name" placeholder="Enter Last Name">
+								</div>
+								<div class="form-group">
+									<label for="email">Email Address</label>
+									<input autocomplete="off" type="email" class="form-control" id="email" placeholder="Enter Email Address">
+								</div>
+								<div class="form-group">
+									<label for="email">Enter a Password</label>
+									<input autocomplete="off" type="password" class="form-control" id="signup_password" placeholder="Enter a Password">
+								</div>
+								<div class="form-group">
+									<label for="email">Re-enter Password</label>
+									<input autocomplete="off" type="password" class="form-control" id="reenter_password" placeholder="Re-enter Password">
+								</div>
+								<button type="submit" id="signup_submit" class="btn btn-primary">Submit</button>
 							</div>
 							<div class="col-sm-5 col-sm-offset-2">
 								<button id="facebook_signup" type="button" class="btn btn-primary btn-lg">Sign up via Facebook</button>
@@ -236,34 +224,71 @@
 		<script>
 
 			$(document).ready(function(){
+
 				$(window).scroll(function(){
 					if($('.jumbotron').visible(true)){
-						// $('.navigation').css({
-						// 	'position' : 'static',
-						// 	'top' : 'auto',
-						// 	'left' : 'auto',
-						// 	'z-index' : 0	
-						// })
 						$('.logo_row').css({
 							'background-image' : 'none'
 						})
 					}else{
-						// $('.navigation').css({
-						// 	'position' : 'fixed',
-						// 	'top' : 50,
-						// 	'left' : 0,
-						// 	'z-index' : 99
-						// })
-
 						$('.logo_row').css({
 							'background-image' : 'url("images/uc-logo-bg-1920.jpg")',
 							'background-position' : 'center center',
 							'background-repeat' : 'no-repeat'
 						})
-					}
-						
+					}	
 				})
+
+				$(document).on('click', '#signup_submit', function(){
+
+					var noErrors = true;
+
+					$('#signup_modal .form-group').each(function(){
+						var thisInput = $(this).find('input');
+						if(!thisInput.val()){
+							noErrors = false
+							var thisField = thisInput.parent().find('label').text();
+							alert('Please ensure that the ' +thisField+ ' is not empty');
+							return false;
+						}
+					})
+
+					if($('#signup_password').val() != $('#reenter_password').val()){
+						noErrors = false;
+						alert('Please ensure that the Passwords match');
+					}else{
+						noErrors = true;
+					}
+
+					if(noErrors){
+						var submitObj = {};
+						submitObj.first_name = $('#first_name').val();
+						submitObj.last_name = $('#last_name').val();
+						submitObj.email = $('#email').val();
+						submitObj.password = $('#signup_password').val();
+
+						$.ajax({
+							url : 'url.php',
+							method : 'POST',
+							dataType : 'json',
+							contentType: "application/json",
+							data : JSON.stringify(submitObj),
+							success : function(response){
+								console.log(response);
+							},
+							error : function(response){
+								alert('Error Occured')
+							}
+						})
+
+					}else{
+
+					}
+
+				})
+
 			})
+
 		</script>
 	</body>
 </html>
