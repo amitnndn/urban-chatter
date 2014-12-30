@@ -67,7 +67,7 @@ $(document).ready(function(){
 		$('#signup_modal .form-group').each(function(){
 			var thisInput = $(this).find('input');
 			if(!thisInput.val()){
-				noErrors = false
+				noErrors = false;
 				var thisField = thisInput.parent().find('label').text();
 				alert('Please ensure that the ' +thisField+ ' is not empty');
 				return false;
@@ -77,8 +77,6 @@ $(document).ready(function(){
 		if(noErrors === true && $('#signup_password').val() !== $('#reenter_password').val()){
 			noErrors = false;
 			alert('Please ensure that the Passwords match');
-		}else{
-			noErrors = true;
 		}
 
 		if(noErrors){
@@ -103,7 +101,7 @@ $(document).ready(function(){
 			})
 
 		}else{
-
+			
 		}
 
 	})
