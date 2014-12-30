@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Urban Chatter - The city's chaos. Organized.</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrap-tagsinput.css" />
+		<link rel="stylesheet" href="css/styles.css" />
+	</head>
+	<body>
+		<div id="create_page" class="container-fluid">
+			<header class="secondary">
+				<div class="logo_row">
+					<div class="logo"></div>
+					<div class="user_section pull-right">
+						<div class="welcome_message">Hi, Siddhanth <span class="glyphicon glyphicon-chevron-down"></span></div>
+						<div class="user_options">
+							<a href="create_post.html" class="create_post"><span class="glyphicon glyphicon-edit"></span> Create a New Post</a>
+							<a class="my_posts"><span class="glyphicon glyphicon-comment"></span> View my Posts</a>
+							<a class="my_profile"><span class="glyphicon glyphicon-user"></span> My Profile</a>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</header>
+			<div class="create_content">
+				<div id="post_create">
+					<h2>Urban Chatter - Create a New Blog Post</h2>
+					<div class="form-group">
+						<label for="post_title">Title of the Blog Post</label>
+						<input autocomplete="off" type="text" class="form-control" id="post_title" placeholder="Enter the Title of the Blog Post">
+					</div>
+					<div class="form-group">
+						<label for="post_title">Content of the Blog Post</label>
+						<textarea class="tinymce form-control" rows="30"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="tags">Add Tags <span class="glyphicon glyphicon-info-sign" data-toggle="popover" title="Add Tags" data-content="Adding tags to your post will help in users of Urban Chatter search and view your posts easily. To add tags, just type in the tag you want and press the Enter / Return key"></span></label>
+						<input type="text" id="tags" class="form-control" data-role="tagsinput" />
+					</div>
+					<button type="submit" id="post_submit" class="btn btn-primary">Submit Post</button>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/libs/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.visible.min.js"></script>
+	<script type="text/javascript" src="js/libs/tinymce.min.js"></script>
+	<script type="text/javascript" src="js/libs/bootstrap-tagsinput.min.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
+</html>

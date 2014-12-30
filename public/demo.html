@@ -12,10 +12,18 @@
 			<header>
 				<div class="logo_row">
 					<div class="logo"></div>
-					<div class="button_section pull-right">
+					<div class="button_section pull-right" style="display: none">
 						<button id="login_btn" data-toggle="modal" data-target="#login_modal" type="button" class="btn btn-primary btn-sm pull-left">Login</button>
 						<button id="signup_btn" data-toggle="modal" data-target="#signup_modal" type="button" class="btn btn-success btn-sm pull-left">Sign Up</button>
 						<div class="clearfix"></div>
+					</div>
+					<div class="user_section pull-right">
+						<div class="welcome_message">Hi, Siddhanth <span class="glyphicon glyphicon-chevron-down"></span></div>
+						<div class="user_options">
+							<a href="create_post.html" class="create_post"><span class="glyphicon glyphicon-edit"></span> Create a New Post</a>
+							<a class="my_posts"><span class="glyphicon glyphicon-comment"></span> View my Posts</a>
+							<a class="my_profile"><span class="glyphicon glyphicon-user"></span> My Profile</a>
+						</div>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -221,10 +229,10 @@
 		<script type="text/javascript" src="js/libs/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/libs/jquery.visible.min.js"></script>
-		<script>
-
+		<script type="text/javascript" src="js/libs/tinymce.min.js"></script>
+		<script type="text/javascript" src="js/scripts.js"></script>
+		<script type="text/javascript">
 			$(document).ready(function(){
-
 				$(window).scroll(function(){
 					if($('.jumbotron').visible(true)){
 						$('.logo_row').css({
@@ -238,57 +246,7 @@
 						})
 					}	
 				})
-
-				$(document).on('click', '#signup_submit', function(){
-
-					var noErrors = true;
-
-					$('#signup_modal .form-group').each(function(){
-						var thisInput = $(this).find('input');
-						if(!thisInput.val()){
-							noErrors = false
-							var thisField = thisInput.parent().find('label').text();
-							alert('Please ensure that the ' +thisField+ ' is not empty');
-							return false;
-						}
-					})
-
-					if(noErrors === true && $('#signup_password').val() !== $('#reenter_password').val()){
-						noErrors = false;
-						alert('Please ensure that the Passwords match');
-					}else{
-						noErrors = true;
-					}
-
-					if(noErrors){
-						var submitObj = {};
-						submitObj.first_name = $('#first_name').val();
-						submitObj.last_name = $('#last_name').val();
-						submitObj.email = $('#email').val();
-						submitObj.password = $('#signup_password').val();
-
-						$.ajax({
-							url : 'url.php',
-							method : 'POST',
-							dataType : 'json',
-							contentType: "application/json",
-							data : JSON.stringify(submitObj),
-							success : function(response){
-								console.log(response);
-							},
-							error : function(response){
-								alert('Error Occured')
-							}
-						})
-
-					}else{
-
-					}
-
-				})
-
 			})
-
 		</script>
 	</body>
 </html>

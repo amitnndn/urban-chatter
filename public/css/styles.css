@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 /*********************************************** Generic Styles ***********************************************/
-body {margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #646464; background: #FFF; text-align: center;}
+body {margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #797575; background: #FFF; text-align: center;}
 img {border: 0 none;}
 div, h1, h2, h3, h4, h5, h6, ul, li {margin: 0; padding: 0;}
 div{text-align: left;}
@@ -11,32 +11,55 @@ p{margin: 0 0 20px 0;}
 .clear{clear: both; margin: 0 0 -1px;}
 .container-fluid{padding: 0;}
 header{position: fixed; top: 0; left: 0; z-index: 99; width: 100%;}
+header.secondary{background: url(../images/uc-logo-bg-1920.jpg) no-repeat scroll center center;}
 header .logo_row{margin: 0; padding: 10px 20px;}
 .logo{background: url(../images/uc-logo-300.png) no-repeat scroll 0 0; background-size: 100% 100%; float: left; width: 210px; height: 28px;}
 .jumbotron{padding: 0; margin-bottom: 0; padding-top: 50px; background-color: #FFF;}
 .navigation{width: 100%; margin: 0 auto; padding: 10px 20px; background-color: #FFEF93;}
 .nav_bar{width: 240px; margin: 0 auto;}
-.navigation a{float: left; width: auto; padding: 5px 10px; font-size: 16px; color: #797575; border-right: 1px solid #797575}
+.navigation a{float: left; width: auto; padding: 5px 10px; font-size: 16px; border-right: 1px solid #797575}
 .navigation a.first{padding-left: 0;}
 .navigation a.last{border-right: 0;}
 .content .row h2{font-size: 18px; font-weight: normal; color: #ffd800; margin-bottom: 20px;}
 #featured.row, #recent.row, #new.row, #about_us.row{margin: 0; padding: 20px;}
 a.thumbnail{padding: 10px;}
 h4.title{margin-bottom: 5px;}
-div.author{display: block; color: #797575; text-decoration: underline; font-size: 14px; margin-bottom: 5px;}
+div.author{display: block; text-decoration: underline; font-size: 14px; margin-bottom: 5px;}
 div.description, div.author_text{font-size: 12px; line-height: 16px; color: #646464; margin-bottom: 15px;}
 .container-fluid{padding-bottom: 30px;}
 #about_us.row h2{font-size: 24px; color: #0096d6; margin-bottom: 20px; text-align: center;}
 .owner.row{margin: 0; padding: 20px;}
-.author_desc h4{font-size: 16px; margin-bottom: 5px; color: #797575; text-align: center;}
+.author_desc h4{font-size: 16px; margin-bottom: 5px; text-align: center;}
 .author_text{text-align: center;}
 .author_profile{display: block; margin: 0 auto 20px; width: 200px;}
 #login_btn{margin-right: 10px;}
 #facebook_login, #facebook_signup{margin-top: 30px;}
+.user_section{font-size: 16px; margin-top: 5px; position: relative;}
+.welcome_message{cursor: pointer;}
+.welcome_message span{font-size: 12px; font-weight: normal; color: #0096d6; margin-left: 10px;}
+.user_options{width: 200px; position: absolute; background-color: #FFEF93; top: 150%; right: -5px; z-index: 999; display: none; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;}
+.user_options a{display: block; width: 100%; padding: 10px; border-bottom: 1px solid #797575; font-size: 14px; color: #797575}
+.user_options a.my_profile{border: 0 none;}
+.user_options a span.glyphicon{margin-right: 10px;}
+.create_content{width: 960px; margin: 0 auto; padding-top: 70px;}
+.create_content h2{font-size: 36px; text-align: center; font-weight: normal; margin-bottom: 40px;}
+#post_create{font-size: 14px;}
+#post_create .form-group{margin-bottom: 20px;}
+#post_create label{font-size: 16px; font-weight: normal;}
+textarea.form-control{resize: none;}
+#mceu_15-open{display: none;}
+.popover-content{font-size: 12px;}
+.bootstrap-tagsinput{display: block;}
+
+@media(max-width: 960px){
+	.create_content{width: 100%; padding: 70px 20px 0;}
+}
+
 @media(max-width: 767px){
 	.author_profile{float: left; width: 30%; margin-right: 5%;}
 	.author_desc{float: left; width: 65%;}
 	.author_desc h4, .author_text{text-align: left;}
+	.create_content h2{font-size: 24px;}
 }
 
 @media(max-width: 480px){
