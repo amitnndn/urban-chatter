@@ -253,7 +253,7 @@
 						}
 					})
 
-					if($('#signup_password').val() != $('#reenter_password').val()){
+					if(noErrors === true && $('#signup_password').val() !== $('#reenter_password').val()){
 						noErrors = false;
 						alert('Please ensure that the Passwords match');
 					}else{
