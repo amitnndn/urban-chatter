@@ -15,6 +15,19 @@ function initEditor() {
 	});
 }
 
+function getQueryString(fieldname) {
+    var url = document.location+''; // Insures string
+    q=url.split('?');
+    if (q[1]) {
+        var pairs = q[1].split('&');
+        for (i=0;i<pairs.length;i++) {
+            var keyval = pairs[i].split('=');
+            if (keyval[0] == fieldname) { var v = keyval[1]; break; }
+        }
+    }
+    if (v) { return v; }
+}
+
 $(document).ready(function(){
 
 	initEditor();
@@ -141,7 +154,7 @@ $(document).ready(function(){
 				data : JSON.stringify(blogPostObj),
 				success : function(response){
 					if(response.status == 1){
-						å
+					
 					}
 				},
 				error : function(response){
