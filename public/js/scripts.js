@@ -153,8 +153,9 @@ $(document).ready(function(){
         		contentType: "application/json",
 				data : JSON.stringify(blogPostObj),
 				success : function(response){
-					if(response.status == 1){
-					
+					alert(response.message);
+					if(response.status == true){
+						location.href = response.url;
 					}
 				},
 				error : function(response){
