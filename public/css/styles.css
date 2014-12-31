@@ -39,7 +39,7 @@ div.description, div.author_text{font-size: 12px; line-height: 16px; color: #646
 .welcome_message span{font-size: 12px; font-weight: normal; color: #0096d6; margin-left: 10px;}
 .user_options{width: 200px; position: absolute; background-color: #FFEF93; top: 150%; right: -5px; z-index: 999; display: none; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;}
 .user_options a{display: block; width: 100%; padding: 10px; border-bottom: 1px solid #797575; font-size: 14px; color: #797575}
-.user_options a.my_profile{border: 0 none;}
+.user_options a.logout{border: 0 none;}
 .user_options a span.glyphicon{margin-right: 10px;}
 .create_content{width: 960px; margin: 0 auto; padding-top: 70px;}
 .create_content h2{font-size: 36px; text-align: center; font-weight: normal; margin-bottom: 40px;}

@@ -22,6 +22,80 @@ $(document).ready(function(){
 	$('[data-toggle="popover"]').popover({
 		trigger : 'hover'
 	})
+	
+	$.ajax({
+		url : '/login/check-login',
+		dataType : 'json',
+		success : function(response){
+			var HTML = $.parseHTML(unescape(response.html_content));
+			$('header').html(HTML);
+			if(response.loggedin){
+				
+			}else{
+				
+			}
+		},
+		error : function(response){
+			alert('Error Occured');
+		}
+	})
+	
+	$(document).on('click', '#login_submit', function(){
+		var noErrors = true;
+		if(!$('#login_modal #username').val()){
+			noErrors = false;
+			alert('Username cannot be empty');
+			return false;
+		}
+		
+		if(!$('#login_modal #password').val()){
+			noErrors = false;
+			alert('Password field cannot be empty');
+			return false;
+		}
+		
+		if(noErrors){
+			var userObj = {};
+			userObj.username = $('#login_modal #username').val();
+			userObj.password = $('#login_modal #password').val();
+			$.ajax({
+				url : '/login/user-login/',
+				method : 'POST',
+				dataType : 'json',
+				contentType: "application/json",
+				data : JSON.stringify(userObj),
+				success : function(response){
+					if(response.status == 1){
+						var HTML = $.parseHTML(unescape(response.html_content));
+						$('header').html(HTML);
+						var userName = response.user_name;
+						$('.welcome_message').html('Hi, '+userName+ ' <span class="glyphicon glyphicon-chevron-down"></span>');
+						$('#login_modal').modal('hide')
+					}else{
+						alert(response.message);
+					}
+				},
+				error : function(response){
+					alert('Error Occured');
+				}
+			})
+		}
+		
+	})
+	
+	$(document).on('click', '.logout', function(){
+		$.ajax({
+			url : '/logout',
+			dataType : 'json',
+			success : function(response){
+				var HTML = $.parseHTML(unescape(response.html_content));
+				$('header').html(HTML);
+			},
+			error : function(response){
+				alert('Error Occured');
+			}
+		})
+	})
 
 	$(document).on('click', '.welcome_message', function(){
 		if($('.welcome_message  span.glyphicon').hasClass('glyphicon-chevron-down')){
@@ -56,6 +130,19 @@ $(document).ready(function(){
         	blogPostObj.title = $('#post_create #post_title').val();
         	blogPostObj.body = escape(bodyMessage);
         	blogPostObj.tags = $("input#tags").tagsinput('items');
+        	$.ajax({
+        		url : '/post/create/',
+        		dataType : 'json',
+        		method : 'POST',
+        		contentType: "application/json",
+				data : JSON.stringify(blogPostObj),
+				success : function(response){
+					console.log(response);
+				},
+				error : function(response){
+					alert('Error Occured')
+				}
+        	})
         }
 
 	})
@@ -89,7 +176,7 @@ $(document).ready(function(){
 			submitObj.password = $('#signup_password').val();
 
 			$.ajax({
-				url : 'url.php',
+				url : '/user/create',
 				method : 'POST',
 				dataType : 'json',
 				contentType: "application/json",
