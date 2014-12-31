@@ -88,8 +88,11 @@ $(document).ready(function(){
 			url : '/logout',
 			dataType : 'json',
 			success : function(response){
-				var HTML = $.parseHTML(unescape(response.html_content));
-				$('header').html(HTML);
+				if(status == 1){
+					var HTML = $.parseHTML(unescape(response.html_content));
+					$('header').html(HTML);	
+				}
+				alert(response.message);
 			},
 			error : function(response){
 				alert('Error Occured');
@@ -137,7 +140,9 @@ $(document).ready(function(){
         		contentType: "application/json",
 				data : JSON.stringify(blogPostObj),
 				success : function(response){
-					console.log(response);
+					if(response.status == 1){
+						å
+					}
 				},
 				error : function(response){
 					alert('Error Occured')
