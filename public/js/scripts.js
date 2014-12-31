@@ -180,7 +180,15 @@ $(document).ready(function(){
 				contentType: "application/json",
 				data : JSON.stringify(submitObj),
 				success : function(response){
-					console.log(response);
+					if(response.status == 1){
+						var HTML = $.parseHTML(unescape(response.html_content));
+						$('header').html(HTML);
+						var userName = response.user_name;
+						$('.welcome_message').html('Hi, '+userName+ ' <span class="glyphicon glyphicon-chevron-down"></span>');
+						$('#signup_modal').modal('hide')
+					}else{
+						alert(response.message)
+					}
 				},
 				error : function(errResponse){
 					alert('Error Occured')
