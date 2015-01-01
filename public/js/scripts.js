@@ -216,9 +216,9 @@ $(document).ready(function(){
 					if(response.status == 1){
 						alert(response.message);
 						if(thisButton.hasClass('dislike')){
-							thisButton.parent().html('<a class="fa fa-thumbs-down disliked"></a> '+ response.dislikes);
+							thisButton.parent().html('<a class="fa fa-thumbs-down disliked"></a> '+ response.unlikes);
 						}else{
-							thisButton.parent().html('<a class="fa fa-thumbs-down dislike"></a> '+ response.dislikes)
+							thisButton.parent().html('<a class="fa fa-thumbs-down dislike"></a> '+ response.unlikes)
 						}
 					}else{
 						alert(response.message);
