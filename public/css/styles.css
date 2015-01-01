@@ -55,8 +55,8 @@ a.username{font-size: 14px;}
 .blog_post, .tags{margin-top: 20px; font-size: 14px; line-height: 24px;}
 .likes_section{margin-top: 20px;}
 .likes{margin-right: 25px; width: auto;}
-.likes_section a.fa.fa-thumbs-up.liked, .likes_section a.fa.fa-thumbs-up.disliked{color: #0096d6; font-size: 21px;}
-.likes_section a.fa.fa-thumbs-up.like, .likes_section a.fa.fa-thumbs-up.dislike{color: #bababa; font-size: 21px;}
+.likes_section a.fa.fa-thumbs-up.liked, .likes_section a.fa.fa-thumbs-down.disliked{color: #0096d6; font-size: 21px;}
+.likes_section a.fa.fa-thumbs-up.like, .likes_section a.fa.fa-thumbs-down.dislike{color: #bababa; font-size: 21px;}
 
 @media(max-width: 960px){
 	.create_content, .blog_content{width: 100%; padding: 70px 20px 0;}
