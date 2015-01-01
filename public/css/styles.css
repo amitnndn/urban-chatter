@@ -50,6 +50,9 @@ textarea.form-control{resize: none;}
 #mceu_15-open{display: none;}
 .popover-content{font-size: 12px;}
 .bootstrap-tagsinput{display: block;}
+h1.post_title{margin-bottom: 20px;}
+a.username{font-size: 14px;}
+.blog_post, .tags{margin-top: 20px; font-size: 14px; line-height: 24px;}
 
 @media(max-width: 960px){
 	.create_content, .blog_content{width: 100%; padding: 70px 20px 0;}
