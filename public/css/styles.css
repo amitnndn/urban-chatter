@@ -57,7 +57,13 @@ a.username{font-size: 14px;}
 .likes{margin-right: 25px; width: auto;}
 .likes_section a.fa.fa-thumbs-up.liked, .likes_section a.fa.fa-thumbs-down.disliked{color: #0096d6; font-size: 21px;}
 .likes_section a.fa.fa-thumbs-up.like, .likes_section a.fa.fa-thumbs-down.dislike{color: #bababa; font-size: 21px;}
-
+.comment_section{margin-top: 20px;}
+.comment{padding: 10px; margin-bottom: 5px; background-color: #DCDCDC;}
+.comment a.author{display: block; margin-bottom: 3px; font-weight: bold; color: rgb(0, 150, 214);}
+.enter_comment{margin-top: 10px;}
+.enter_comment label{display: block;}
+.enter_comment textarea{width: 100%; resize: none; border: 1px solid rgb(220, 220, 220);}
+.comment_submit{margin-top: 5px;}
 @media(max-width: 960px){
 	.create_content, .blog_content{width: 100%; padding: 70px 20px 0;}
 }
