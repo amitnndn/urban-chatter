@@ -11,7 +11,7 @@ p{margin: 0 0 20px 0;}
 .clear{clear: both; margin: 0 0 -1px;}
 .container-fluid{padding: 0;}
 header{position: fixed; top: 0; left: 0; z-index: 99; width: 100%;}
-header.secondary{background: url(../images/uc-logo-bg-1920.jpg) no-repeat scroll center center;}
+header.secondary{background: url(../images/uc-logo-bg-1920-2.jpg) no-repeat scroll center center;}
 header .logo_row{margin: 0; padding: 10px 20px;}
 .logo{background: url(../images/uc-logo-300.png) no-repeat scroll 0 0; background-size: 100% 100%; float: left; width: 210px; height: 28px;}
 .jumbotron{padding: 0; margin-bottom: 0; padding-top: 50px; background-color: #FFF;}
