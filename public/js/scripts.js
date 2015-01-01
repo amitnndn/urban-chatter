@@ -161,6 +161,42 @@ $(document).ready(function(){
 
 	})
 
+	$(document).on('click', '.likes a', function(){
+		var blogID = getQueryString('id');
+		var thisButton = $(this);
+		if($('.dislikes a').hasClass('disliked')){
+			alert('You have already disliked this Post. Please click on the Dislike button again to remove your dislike and then link this post');
+		}else{
+
+			var likeObj = {};
+			likeObj.post_id = Number(blogID);
+
+			$.ajax({
+				url : '/likes/',
+				method : 'POST',
+				dataType : 'json',
+				contentType: "application/json",
+				data : JSON.stringify(likeObj),
+				success : function(response){
+					if(response.status == 1){
+						alert(response.message);
+						if(thisButton.hasClass('like')){
+							thisButton.removeClass('like').addClass('liked');
+						}else{
+							thisButton.removeClass('liked').addClass('like');
+						}
+						thisButton.parent().text(response.likes);	
+					}else{
+						alert(response.message);
+					}
+				},
+				error : function(response){
+					alert('Error Occured');
+				}
+			})
+		}
+	})
+
 	$(document).on('click', '#signup_submit', function(){
 
 		var noErrors = true;
