@@ -181,11 +181,10 @@ $(document).ready(function(){
 					if(response.status == 1){
 						alert(response.message);
 						if(thisButton.hasClass('like')){
-							thisButton.removeClass('like').addClass('liked');
+							thisButton.parent().html('<a class="fa fa-thumbs-down liked"></a> '+ response.likes);
 						}else{
-							thisButton.removeClass('liked').addClass('like');
+							thisButton.parent().html('<a class="fa fa-thumbs-down like"></a> '+ response.likes)
 						}
-						thisButton.parent().text(response.likes);	
 					}else{
 						alert(response.message);
 					}
