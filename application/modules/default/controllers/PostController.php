@@ -115,7 +115,9 @@
 			$rawBody = $request->getRawBody();
 			$input = json_decode($rawBody);
 			$db = Zend_Db_Table::getDefaultAdapter();
-			$user_id = 16;
+			$session = $this->session_authenticate();
+			$username = $session["username"];
+			$user_id = $session["userid"];
 			$title = $input->title;
 			$content = $input->body;
 			$tags = $input->tags;
@@ -138,6 +140,8 @@
 				}	
 			}
 			$last_insert_id = $db->lastInsertId();
+			$tag_html = "";
+			$i=0;
 			foreach($tags as $a){
 				$data = array(
 					"post_id" => $last_insert_id,
@@ -153,11 +157,24 @@
 						case 'default': $message = "Unknown Error."; break;
 					}
 				}
+				$tag_id = $db->lastInsertId();
+				if($i == 0)
+					$tag_html .= "<a class='tag_name' id='$tag_id'>$a</a>";
+				else{
+					$tag_html .=", <a class='tag_name' id='$tag_id'>$a</a>";
+				}
+				$i++;
 			}
+			$session = $this->session_authenticate();
+			$user_name = $session["username"];
 			$response = array(
-					"message" => true,
+					"status" => true,
+					"message" => "Blog has been successfully created",
+					"url" => "/view-post/?id=$last_insert_id",
 					"post_id" => $last_insert_id,
 					"user_id" => $user_id
+					/* "html_content" => "<div id='post_create'><h1 class='post_title'>$title</h1><a class='username' href='>".$user_name."</a><div class='blog_post'>".urldecode($content)."</div><div class='tags'>$$tag_html</div></div>",
+					"tag_html" => "<div class='tags'>$tag_html</div>" */
 			);
 			echo json_encode($response);
 		}

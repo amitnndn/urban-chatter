@@ -16,8 +16,10 @@
 			$session->setExpirationSeconds(1);
 			$response = array(
 				"status" => 1,
-				"html_content" => $config['loggedin']['false'] 
+				"html_content" => $config['loggedin']['false'],
+				"message" => "Logout Successful"
 			);
+			header('Location: /');
 			echo json_encode($response);
 		}
 		protected function session_authenticate(){

@@ -44,6 +44,7 @@
 			$fname = $data->first_name;
 			$lname = $data->last_name;
 			$email = $data->email;
+			$passwd = $data->password;
 			$fb_login = $params['fb_login'];
 			$db = Zend_Db_Table::getDefaultAdapter();
 			$select = $db->select()
@@ -52,7 +53,7 @@
 			$data = $db->query($select)->fetchAll();
 			if(!empty($data)){
 				$response = array(
-					"status" => "0",
+					"status" => 0,
 					"message" => "User Already Exists",
 					"html_content" => $config['loggedin']['false']
 					);
@@ -60,7 +61,7 @@
 				return;
 			}
 			if($fb_login == 0){
-				$passwd = md5($params["passwd"]);
+				$passwd = md5($passwd);
 			}
 			$data = array (
 					"title" => "null",
@@ -93,7 +94,7 @@
 			}
 			$last_insert_id = $db->lastInsertId();
 			$response = array(
-				"status" => "1",
+				"status" => 1,
 				"registration" => "Successful",
 				"user_id" => $last_insert_id,
 				"user_name" => $fname." ".$lname,
