@@ -10,10 +10,34 @@
 				?>
   				<div class="likes_section">
 					 <div class="likes pull-left">
-					   <a class="fa fa-thumbs-up liked" style="color: rgb(186, 186, 186);"></a> <?php $this->select;?>
+					 <?php 
+					 	if($this->liked == 1){
+					 ?>
+					   <a class="fa fa-thumbs-up liked" style="color: rgb(186, 186, 186);"></a>
+					 <?php 
+					    }
+					    else{
+					 ?>  
+					 	<a class="fa fa-thumbs-up like" style="color: rgb(186, 186, 186);"></a>
+					 <?php 
+					 	}
+					 	echo $this->likes;
+					 ?>
+					 
 					 </div>
 					 <div class="dislikes pull-left">
-					         <a class="fa fa-thumbs-down dislike"></a> 200
+					 <?php 
+					 	if($this->disliked == 1){
+					 ?>
+					         <a class="fa fa-thumbs-down disliked"></a>
+					  <?php }
+					  	else{
+					  ?>
+					  		 <a class="fa fa-thumbs-down dislike"></a>
+					  <?php 
+					  	}
+					  	echo $this->dislikes;
+					  ?>
 					 </div>
 					 <div class="clearfix"></div>
 				</div>
@@ -23,10 +47,10 @@
 				?>
 					<div class="likes_section">
 					 <div class="likes pull-left">
-					   <a class="fa fa-thumbs-up like" style="color: rgb(186, 186, 186);"></a> <?php $this->select;?>
+					   <a class="fa fa-thumbs-up like" style="color: rgb(186, 186, 186);"></a> <?php echo $this->likes;?>
 					 </div>
 					 <div class="dislikes pull-left">
-					         <a class="fa fa-thumbs-down dislike"></a> 200
+					         <a class="fa fa-thumbs-down dislike"></a> <?php echo $this->dislikes;?>
 					 </div>
 					 <div class="clearfix"></div>
 				</div>

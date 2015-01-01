@@ -6,7 +6,7 @@
 		public function indexAction(){
 			$params = $this->_getAllParams();
 			$id = $params['id'];
-			$a = $this->session_authenticate();
+			$session = $this->session_authenticate();
 			$db = Zend_Db_Table::getDefaultAdapter();
 			$select = $db->select()
 			->from("posts")
@@ -47,10 +47,39 @@
 						}
 						$i++;
 					}
-					$this->view->username = $username;
+					$this->view->author = $username;
 					$this->view->title = $a['title'];
 					$this->view->content = $a['content'];
 					$this->view->tags = $tag_html;
+					$this->view->likes = $a['likes'];
+					$this->view->dislikes = $a['dislikes'];
+					if($session['status'] == 1){
+						$select = $db->select()
+									 ->from("likes")
+									 ->where("post_id = ".$a['id']." AND user_id = ".$session['userid']);
+						$this->view->loggedin = 1;
+						$data2 = $db->query($select)->fetchAll();
+						if(empty($data2)){
+							$this->view->liked = 0;
+						}
+						else{
+							$this->view->liked = 1;
+						}
+						$select = $db->select()
+									 ->from("post_unlikes")
+									 ->where("post_id = ".$a['id']." AND user_id = ".$session['userid']);
+						$data2 = $db->query($select)->fetchAll();
+						if(empty($data2)){
+							$this->view->disliked = 0;
+						}
+						else{
+							$this->view->disliked = 1;
+						}
+					}
+					else{
+						$this->view->loggedin = 0;
+					}
+					
 				}
 			} 
 		}
