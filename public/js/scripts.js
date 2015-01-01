@@ -43,7 +43,7 @@ $(document).ready(function(){
 			var HTML = $.parseHTML(unescape(response.html_content));
 			$('header').html(HTML);
 			if(response.loggedin){
-				$('.welcome_message').html('Hi, ' + response.username);
+				$('.welcome_message').html('Hi, ' + response.username + '<span class="glyphicon glyphicon-chevron-down"></span>');
 			}else{
 				
 			}
