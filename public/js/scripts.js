@@ -231,6 +231,39 @@ $(document).ready(function(){
 		}
 	})
 
+	$(document).on('click', '.comment_submit', function(){
+		var blogID = getQueryString('id');
+		var comment = $('.comment_post').val();
+		if(comment){
+			var commentObj = {
+				post_id : blogID,
+				content : comment
+			};
+
+			$.ajax({
+				url : '/comment/create/',
+				dataType : 'json',
+				method : 'POST',
+				contentType: "application/json",
+				data : JSON.stringify(commentObj),
+				success : function(response){
+					if(response.status == 1){
+						var commentHTML = $.parseHTML(unescape(response.html_content));
+						$('.comment_section').html(commentHTML);
+					}else{
+						alert(response.message);
+					}
+				},
+				error : function(response){
+					alert('Error Occured');
+				}
+			})
+
+		}else{
+			alert('Comment Field cannot be blank')
+		}
+	})
+
 	$(document).on('click', '#signup_submit', function(){
 
 		var noErrors = true;
