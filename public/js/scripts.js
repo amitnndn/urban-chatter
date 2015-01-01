@@ -172,7 +172,7 @@ $(document).ready(function(){
 			likeObj.post_id = Number(blogID);
 
 			$.ajax({
-				url : '/likes/',
+				url : '/like/',
 				method : 'POST',
 				dataType : 'json',
 				contentType: "application/json",
