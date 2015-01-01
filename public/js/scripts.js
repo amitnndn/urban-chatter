@@ -165,7 +165,7 @@ $(document).ready(function(){
 		var blogID = getQueryString('id');
 		var thisButton = $(this);
 		if($('.dislikes a').hasClass('disliked')){
-			alert('You have already disliked this Post. Please click on the Dislike button again to remove your dislike and then link this post');
+			alert('You have already disliked this Post. Please click on the Dislike button again to remove your dislike and then like this post');
 		}else{
 
 			var likeObj = {};
@@ -184,6 +184,41 @@ $(document).ready(function(){
 							thisButton.parent().html('<a class="fa fa-thumbs-up liked"></a> '+ response.likes);
 						}else{
 							thisButton.parent().html('<a class="fa fa-thumbs-up like"></a> '+ response.likes)
+						}
+					}else{
+						alert(response.message);
+					}
+				},
+				error : function(response){
+					alert('Error Occured');
+				}
+			})
+		}
+	})
+
+	$(document).on('click', '.dislikes a', function(){
+		var blogID = getQueryString('id');
+		var thisButton = $(this);
+		if($('.likes a').hasClass('liked')){
+			alert('You have already liked this Post. Please click on the Like button again to remove your like and then dislike this post');
+		}else{
+
+			var dislikeObj = {};
+			dislikeObj.post_id = Number(blogID);
+
+			$.ajax({
+				url : '/dislike/',
+				method : 'POST',
+				dataType : 'json',
+				contentType: "application/json",
+				data : JSON.stringify(dislikeObj),
+				success : function(response){
+					if(response.status == 1){
+						alert(response.message);
+						if(thisButton.hasClass('dislike')){
+							thisButton.parent().html('<a class="fa fa-thumbs-down disliked"></a> '+ response.dislikes);
+						}else{
+							thisButton.parent().html('<a class="fa fa-thumbs-down dislike"></a> '+ response.dislikes)
 						}
 					}else{
 						alert(response.message);
