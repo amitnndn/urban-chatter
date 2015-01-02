@@ -186,7 +186,7 @@ $(document).ready(function(){
         	blogPostObj.body = escape(bodyMessage);
         	blogPostObj.tags = $("input#tags").tagsinput('items');
         	$.ajax({
-        		url : '/post/create/',
+        		url : '/post/update/',
         		dataType : 'json',
         		method : 'POST',
         		contentType: "application/json",
