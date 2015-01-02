@@ -161,6 +161,50 @@ $(document).ready(function(){
 
 	})
 
+	$(document).on('click', '#post_update', function(){
+		var noErrors = true;
+
+		if(!$('#post_create #post_title').val()){
+			noErrors = false;
+			alert('Please enter a title for the Blog Post');
+			return false;
+		}
+
+		var bodyMessage = tinyMCE.activeEditor.getContent();
+		if(typeof bodyMessage == 'undefined' || bodyMessage.length < 1){
+			alert("Blog Post Body cannot be Empty");
+            $("#post_create textarea").focus();
+            noErrors = false;
+            return false;
+        }
+
+        if(noErrors){
+        	var blogID = getQueryString('id');
+        	var blogPostObj = {};
+        	blogPostObj.post_id = blogID;
+        	blogPostObj.title = $('#post_create #post_title').val();
+        	blogPostObj.body = escape(bodyMessage);
+        	blogPostObj.tags = $("input#tags").tagsinput('items');
+        	$.ajax({
+        		url : '/post/create/',
+        		dataType : 'json',
+        		method : 'POST',
+        		contentType: "application/json",
+				data : JSON.stringify(blogPostObj),
+				success : function(response){
+					alert(response.message);
+					if(response.status == true){
+						location.href = response.url;
+					}
+				},
+				error : function(response){
+					alert('Error Occured')
+				}
+        	})
+        }
+
+	})
+
 	$(document).on('click', '.likes a', function(){
 		var blogID = getQueryString('id');
 		var thisButton = $(this);
