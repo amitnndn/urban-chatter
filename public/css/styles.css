@@ -59,7 +59,8 @@ a.username{font-size: 14px;}
 .likes_section a.fa.fa-thumbs-up.like, .likes_section a.fa.fa-thumbs-down.dislike{color: #bababa; font-size: 21px;}
 .comment_section{margin-top: 20px;}
 .comment{padding: 10px; margin-bottom: 5px; background-color: #DCDCDC;}
-.comment div.author a{font-weight: bold; color: rgb(0, 150, 214);}
+.comment div.author{text-decoration: none;}
+.comment div.author a{font-weight: bold; color: rgb(0, 150, 214); text-decoration: underline;}
 .enter_comment{margin-top: 10px;}
 .enter_comment label{display: block;}
 .enter_comment textarea{width: 100%; resize: none; border: 1px solid rgb(220, 220, 220);}
