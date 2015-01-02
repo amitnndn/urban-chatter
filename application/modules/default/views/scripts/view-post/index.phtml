@@ -1,8 +1,26 @@
+<?php 
+	$response = $this->response;
+	if($response['status'] == 0){
+		echo "404 not Found";
+		header("Location: /error");
+	}
+?>
 	<body>
 		<div id="blog_post" class="container-fluid">
 			<header class="secondary">
 			</header>
 			<div class="blog_content">
+			<?php 
+				if($this->post_author_id == $this->userid){
+			?>
+				<div class="pull-right">
+				 <a class="edit_blog_post" href='/edit-post/?id=<?php echo $this->post_id;?>'><button type="button" class="btn btn-success btn-xs">Edit</button></a>
+				   <a class="delete_blog_post"><button type="button" class="btn btn-danger btn-xs">Delete</button></a>
+				 </div>
+			<?php 
+				}
+			?>
+				 <div class="clearfix"></div>
 				<h1 class='post_title'><?php echo $this->title;?></h1>
   				Author:&nbsp;<a class='username' href=''><?php echo $this->author;?></a>
   				<?php 
@@ -13,12 +31,12 @@
 					 <?php 
 					 	if($this->liked == 1){
 					 ?>
-					   <a class="fa fa-thumbs-up liked" style="color: rgb(186, 186, 186);"></a>
+					   <a class="fa fa-thumbs-up liked"></a>
 					 <?php 
 					    }
 					    else{
 					 ?>  
-					 	<a class="fa fa-thumbs-up like" style="color: rgb(186, 186, 186);"></a>
+					 	<a class="fa fa-thumbs-up like"></a>
 					 <?php 
 					 	}
 					 	echo $this->likes;
@@ -62,6 +80,49 @@
   					Tags:&nbsp;
   					<?php echo $this->tags;?>
   				</div>
+  				<div class="comment_section">
+  					<span class='comment_label'>Comments:</span>
+  					<div class="comments_parent">
+  					<?php 
+  						$comments = $this->comments;
+  						if($this->commentsPresent == 1){
+  							foreach($comments as $a){
+  					?>
+			   		<div class="comment">
+			   			<?php 
+			   				if($this->userid == $a['comment_author_id']){
+			   			?>
+			   			
+			   		   <a class="delete_comment pull-right" id="<?php echo $a["comment_id"]?>"><i class="fa fa-close"></i></a>
+			   		   <?php } ?>
+				       <div class="author"><a id='<?php echo $a['comment_author_id'];?>'><?php echo $a["comment_author"];?></a></div>
+				       <div class="comment_text"><?php echo $a["content"];?></div>
+			   		</div>
+			   		<?php 
+			   				}
+			   			}
+			   			else{
+			   		?>
+			   			<div class="comment">
+			   				<a class="author"></a>
+			   				<div class="comment_text">No Comments Present!</div>
+			   			</div>
+			   		<?php 
+			   			}
+			   		?>
+			   		</div>
+			   		<?php 
+			   			if($this->loggedin == 1){
+			   		?>
+			   <div class="enter_comment">
+			       <label>Enter Comment</label>
+			       <textarea class="comment_post"></textarea>
+			   </div>
+			   <button class="btn btn-primary btn-xs pull-right comment_submit" type="button">Submit Comment</button>
+			   <?php 
+			   		}
+			   ?>
+			</div>
             </div>
             <div class="modal fade bs-example-modal-lg" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg">

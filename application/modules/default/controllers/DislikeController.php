@@ -1,7 +1,7 @@
 <?php
-	class Default_LikeController extends Zend_Controller_Action {
+	class Default_DislikeController extends Zend_Controller_Action {
 		public function init(){
-			//default init action
+			//default init function
 			$this->_helper->layout->disableLayout();
 			$this->_helper->viewRenderer->setNoRender(TRUE);
 			$data = $this->session_authenticate();
@@ -9,7 +9,7 @@
 			->setHeader('Content-type','application/json');
 			if($data["status"] == 0){
 				$response = array(
-					"message" => "User Not Logged in."
+						"message" => "User Not Logged in."
 				);
 				echo json_encode($response);
 				exit;
@@ -25,35 +25,35 @@
 			$session = $this->session_authenticate();
 			$user_id = $session['userid'];
 			$select = $db->select()
-						 ->from("post_unlikes")
+						 ->from("likes")
 						 ->where("user_id = $user_id AND post_id = $post_id");
 			$data = $db->query($select)->fetchAll();
 			if(!empty($data)){
 				$response = array(
-					"status" => 0,
-					"message" => "User has already disliked."
+						"status" => 0,
+						"message" => "User has already liked."
 				);
 				echo json_encode($response);
 				return;
 			}
 			$select = $db->select()
-						 ->from("likes")
-						 ->where("user_id = $user_id AND post_id = $post_id");
+						 ->from("post_unlikes")
+						 ->where("user_id = $user_id AND post_id = $post_id");	
 			$data = $db->query($select)->fetchAll();
 			if(!empty($data)){
 				foreach($data as $a){
 					$where = $db->quoteInto("id = ?", $a['id']);
-					$db->delete("likes",$where);
+					$db->delete("post_unlikes",$where);
 					$data = array(
-						"likes" => new Zend_Db_Expr("likes- 1")
+							"dislikes" => new Zend_Db_Expr("dislikes- 1")
 					);
 					$where = array(
-						"id = ?" => $post_id
+							"id = ?" => $post_id
 					);
 					$db->update("posts",$data,$where);
 					$select = $db->select()
-								 ->from("posts")
-								 ->where("id = $post_id");
+						->from("posts")
+						->where("id = $post_id");
 					$data = $db->query($select)->fetchAll();
 					foreach($data as $a){
 						$likes = $a['likes'];
@@ -61,14 +61,14 @@
 				}
 				$response = array(
 						"status" => 1,
-						"message" => "Like removed",
-						"likes" => $likes
+						"message" => "Dislike removed",
+						"unlikes" => $likes
 				);
 				echo json_encode($response);
 				return;
 			}
 			$data = array(
-					"likes" => new Zend_Db_Expr("likes+1")
+					"dislikes" => new Zend_Db_Expr("dislikes+1")
 			);
 			$where = array(
 					"id = ?" => $post_id
@@ -88,62 +88,19 @@
 			->where("id = $post_id");
 			$data = $db->query($select)->fetchAll();
 			foreach($data as $a){
-				$likes = $a['likes'];
+				$likes = $a['dislikes'];
 			}
 			$data = array(
 					"post_id" => $post_id,
 					"user_id" => $user_id
 			);
-			$db->insert("likes",$data);
+			$db->insert("post_unlikes",$data);
 			$response = array(
-				"status" => 1,
-				"message" => "Liked",
-				"likes" => $likes
+					"status" => 1,
+					"message" => "Disliked",
+					"unlikes" => $likes
 			);
 			echo json_encode($response);
-		}
-		public function addAction(){
-			$params = $this->_getAllParams();
-			$request = $this->getRequest();
-			$rawBody = $request->getRawBody();
-			$input = json_decode($rawBody);
-			$post_id = $params["post_id"];
-			$user_id = $params["user_id"];
-			$db = Zend_Db_Table::getDefaultAdapter();
-			$data = array(
-				"like" => new Zend_Db_Expr("like+1")
-			);
-			$where = array(
-				"post_id" => $post_id
-			);
-			try{
-				$db->update("posts",$data,$where);
-			}
-			catch(Exception $exception){
-				switch(get_class($exception)){
-					case 'Zend_Argument_Exception': $message = 'Argument Error.'; break;
-					case 'Zend_Db_Statment_Exception': $message = 'Database Error.'; break;
-					case 'default': $message = "Unknown Error."; break;
-				}
-			}
-			$select = $db->select()
-						 ->from("posts")
-						 ->where("id = $post_id");
-			$data = $db->query($select)->fetchAll();
-			foreach($data as $a){
-				echo "{\"likes\":\"".$a["likes"]."\"}";
-			}
-			$data = array(
-				"post_id" => $post_id,
-				"user_id" => $user_id
-			);
-			$db->insert("likes",$data);
-		}
-		public function removeAction(){
-			$params = $this->_getAllParams();
-			$post_id = $params["post_id"];
-			$user_id = $params["user_id"];
-						
 		}
 		protected function session_authenticate(){
 			$session = new Zend_Session_Namespace('login');

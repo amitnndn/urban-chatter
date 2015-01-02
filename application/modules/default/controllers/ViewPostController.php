@@ -8,19 +8,26 @@
 			$id = $params['id'];
 			$session = $this->session_authenticate();
 			$db = Zend_Db_Table::getDefaultAdapter();
+			$this->view->userid = $session['userid'];
+			$this->view->post_id = $id;
 			$select = $db->select()
 			->from("posts")
 			->where("id = $id");
 			$data = $db->query($select)->fetchAll();
 			if(empty($data)){
 				$response = array(
+						"status" => 0,
 						"message" => "No post present",
 						"id" => $id
 				);
-				$this->view->json =  json_encode($response);
-				return;
+
+				$this->view->response =  $response;
 			}
 			else{
+				$response = array(
+					"status" =>1
+				);
+				$this->view->response = $response;
 				foreach($data as $a){
 					$this->view->json = $a["id"];
 					$select = $db->select()
@@ -30,7 +37,9 @@
 					$data1 = $db->query($select)->fetchAll();
 					foreach($data1 as $b){
 						$username = $b['fname']." ".$b['lname'];
+						$post_author_id = $b['id'];
 					}
+					$this->view->post_author_id = $post_author_id;
 					$select = $db->select()
 								 ->from("tags")
 								 ->where("post_id = ".$a['id']);
@@ -50,6 +59,35 @@
 					$this->view->author = $username;
 					$this->view->title = $a['title'];
 					$this->view->content = $a['content'];
+					$comments = array();
+					$select = $db->select()
+								 ->from("comments")
+								 ->where("post_id = ".$a['id']);
+					$data3 = $db->query($select)->fetchAll();
+					foreach($data3 as $c){
+						$select = $db->select()
+									 ->from("users")
+									 ->where("id = ".$c['user_id']);
+						$data4 = $db->query($select)->fetchAll();
+						foreach($data4 as $d){
+							$comment_author = $d['fname']." ".$d['lname'];
+							$comment_author_id = $d['id'];
+						}
+						$comment = array(
+							"content" => $c['content'],
+							"comment_author" => $comment_author,
+							"comment_author_id" => $comment_author_id,
+							"comment_id" => $c['id']
+						);
+						array_push($comments,$comment);
+					}
+					if(!empty($comments)){
+						$this->view->commentsPresent = 1;
+						$this->view->comments = $comments;
+					}
+					else{
+						$this->view->commentsPresent = 0;
+					}
 					$this->view->tags = $tag_html;
 					$this->view->likes = $a['likes'];
 					$this->view->dislikes = $a['dislikes'];

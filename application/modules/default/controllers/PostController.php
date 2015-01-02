@@ -179,21 +179,123 @@
 			echo json_encode($response);
 		}
 		public function deleteAction(){
+			$session = $this->session_authenticate();
+			$user_id = $session['userid'];
 			$params = $this->_getAllParams();
-			$post_id = $params["id"];
+			$request = $this->getRequest();
+			$rawBody = $request->getRawBody();
+			$input = json_decode($rawBody);
+			$post_id = $input->id;
 			$db = Zend_Db_Table::getDefaultAdapter();
+			$select = $db->select()
+						 ->from("posts")
+						 ->where("id = $post_id");
+			$data = $db->query($select)->fetchAll();
+			foreach($data as $a){
+				$author_id = $a['user_id'];
+			}
+			if($user_id != $author_id){
+				$response = array(
+					"status" => 0,
+					"message" => "Cannot delete, User is not the author"
+				);
+				echo json_encode($response);
+				return;
+			}
 			try{
-				$where = $db->quoteInto("id = ?", $post_id);
+				$where = array(
+					"id = ?" => $post_id
+				);
 				$db->delete("posts",$where);
 			}
 			catch(Exception $exception){
+				print_r($exception);
 				switch(get_class($exception)){
 					case 'Zend_Argument_Exception': $message = 'Argument Error.'; break;
 					case 'Zend_Db_Statment_Exception': $message = 'Database Error.'; break;
 					case 'default': $message = "Unknown Error."; break;
 				}
+				$response = array(
+					"status" => 0,
+					"message" => $exception
+				);
+				echo json_encode($response);
+				return;
 			}
-			echo "Delete Successful";
+			$response = array(
+				"status" => 1,
+				"message" => "Post Successfully Deleted"
+			);
+			echo json_encode($response);
+		}
+		public function updateAction(){
+			$session = $this->session_authenticate();
+			$userid = $session['userid'];
+			$request = $this->getRequest();
+			$rawBody = $request->getRawBody();
+			$input = json_decode($rawBody);
+			$db = Zend_Db_Table::getDefaultAdapter();
+			$title = $input->title;
+			$content = urldecode($input->body);
+			$post_id = $input->post_id;
+			$tags = $input->tags;
+			$data = array(
+				"content" => $content,
+				"title" =>$title
+			);
+			$where = array(
+				"id = ?" => $post_id
+			);
+			try{
+				$db->update("posts",$data,$where);
+			}	
+			catch(Exception $exception){
+				$response = array(
+					"status" => 0,
+					"message" => "Some error occured in Updating. Please try after some time."
+				);
+				echo json_encode($data);
+				return;
+			}
+			$where = array(
+				"post_id = ?" => $post_id
+			);
+			try{
+				$db->delete("tags",$where);
+			}
+			catch(Exception $exception){
+				$response = array(
+					"status" => 0,
+					"message" => "Some error occured in Deleting Tags. Please try after some time"
+				);
+				echo json_encode($response);
+				return;
+			}
+			foreach($tags as $a){
+				$data = array(
+					"post_id" => $post_id,
+					"tag" => $a
+				);
+				try{
+					$db->insert("tags",$data);
+				}
+				catch(Exception $exception){
+					$response = array(
+						"status" => 0,
+						"message" => "Some error occured in Inserting Tags. Please try after some time"
+					);
+					echo json_encode($response);
+					return;
+				}
+			}
+			$response = array(
+				"status" => 1,
+				"message" => "Post Successfully Updated",
+				"url" => "/view-post/?id=$post_id"
+			);
+			echo json_encode($response);
+			return;
+			
 		}
 		protected function session_authenticate(){
 			$session = new Zend_Session_Namespace('login');

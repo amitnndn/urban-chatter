@@ -1,0 +1,122 @@
+<?php 
+	
+?>
+	<body>
+		<div id="create_page" class="container-fluid">
+			<header class="secondary">
+			</header>
+			<div class="create_content">
+				<div id="post_create">
+					<h2>Urban Chatter - Create a New Blog Post</h2>
+					<div class="form-group">
+						<label for="post_title">Title of the Blog Post</label>
+						<input autocomplete="off" type="text" class="form-control" id="post_title" placeholder="Enter the Title of the Blog Post" value='<?php echo $this->title;?>'>
+					</div>
+					<div class="form-group">
+						<label for="post_title">Content of the Blog Post</label>
+						<textarea class="tinymce form-control" rows="30"><?php echo $this->content;?></textarea>
+					</div>
+					<div class="form-group">
+						<label for="tags">Add Tags <span class="glyphicon glyphicon-info-sign" data-toggle="popover" title="Add Tags" data-content="Adding tags to your post will help in users of Urban Chatter search and view your posts easily. To add tags, just type in the tag you want and press the Enter / Return key"></span></label>
+						<input type="text" id="tags" class="form-control" data-role="tagsinput" />
+					</div>
+					<button type="submit" id="post_update" class="btn btn-primary">Update Post</button>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade bs-example-modal-lg" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">Login</h4>
+						</div>
+						<div class="modal-body row">
+							<div class="col-sm-5">
+								<div class="form-group">
+									<label for="username">Email Address</label>
+									<input autocomplete="off" type="email" class="form-control" id="username" placeholder="Enter Username">
+								</div>
+								<div class="form-group">
+									<label for="password">Password</label>
+									<input type="password" autocomplete="off" class="form-control" id="password" placeholder="Enter Password">
+								</div>
+								<button id="login_submit" type="submit" class="btn btn-primary">Submit</button>
+							</div>
+							<div class="col-sm-5 col-sm-offset-2">
+								<button id="facebook_login" type="button" class="btn btn-primary btn-lg">Sign in with Facebook</button>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade bs-example-modal-lg" id="signup_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">Sign Up</h4>
+						</div>
+						<div class="modal-body row">
+							<div class="col-sm-5">
+								<div class="form-group">
+									<label for="first_name">First Name</label>
+									<input autocomplete="off" type="text" class="form-control" id="first_name" placeholder="Enter First Name">
+								</div>
+								<div class="form-group">
+									<label for="last_name">Last Name</label>
+									<input autocomplete="off" type="text" class="form-control" id="last_name" placeholder="Enter Last Name">
+								</div>
+								<div class="form-group">
+									<label for="email">Email Address</label>
+									<input autocomplete="off" type="email" class="form-control" id="email" placeholder="Enter Email Address">
+								</div>
+								<div class="form-group">
+									<label for="email">Enter a Password</label>
+									<input autocomplete="off" type="password" class="form-control" id="signup_password" placeholder="Enter a Password">
+								</div>
+								<div class="form-group">
+									<label for="email">Re-enter Password</label>
+									<input autocomplete="off" type="password" class="form-control" id="reenter_password" placeholder="Re-enter Password">
+								</div>
+								<button type="submit" id="signup_submit" class="btn btn-primary">Submit</button>
+							</div>
+							<div class="col-sm-5 col-sm-offset-2">
+								<button id="facebook_signup" type="button" class="btn btn-primary btn-lg">Sign up via Facebook</button>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</body>
+	<script type="text/javascript" src="/js/libs/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="/js/libs/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/libs/jquery.visible.min.js"></script>
+	<script type="text/javascript" src="/js/libs/tinymce.min.js"></script>
+	<script type="text/javascript" src="/js/libs/bootstrap-tagsinput.min.js"></script>
+	<script>
+	 $(document).ready(function(){
+		    var postID = getQueryString('id');
+		    var editPostObj = {post_id : postID}
+		    $.ajax({
+		        url : '/edit-post/get-tags/',
+		        dataType : 'json',
+		        method : 'POST',
+		        contentType : 'application/json',
+		        data : JSON.stringify(editPostObj),
+		        success : function(response){
+		        	 var tagsVal = '';
+		             for(var i = 0; i < response.length; i++){
+		                 if(i == 0)
+		                     tagsVal += response[i];
+		                 else
+		                     tagsVal += ', ' +response[i];
+		             }
+		             $('input#tags').tagsinput('add', tagsVal);
+		        }
+		    })
+		})
+	</script>
+</html>

@@ -58,7 +58,7 @@
 						if($passwd == $a["passwd"]){
 							$session->username = $a["fname"]." ".$a["lname"];
 							$session->userid = $a["id"];
-							$session->setExpirationSeconds(1800);
+							$session->setExpirationSeconds(180000);
 							$response = array(
 								"status" => 1,
 								"user_name" => $session->username,
