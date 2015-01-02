@@ -254,6 +254,29 @@ $(document).ready(function(){
 		}
 	})
 
+	$(document).on('click', '.delete_blog_post', function(){
+		var post_id = getQueryString('id');
+		var deletePostObj = {id : post_id};
+		$.ajax({
+			url : '/post/delete/',
+			dataType : 'json',
+			method : 'POST',
+			contentType : 'application/json',
+			data : JSON.stringify(deletePostObj),
+			success : function(response){
+				if(response.status == 1){
+					alert('Your Post has been deleted');
+					location.href('/')
+				}else{
+					alert('Your Post could not be deleted')
+				}
+			},
+			error : function(response){
+				alert('Error Occured');
+			}
+		})
+	})
+
 	$(document).on('click', '.comment_submit', function(){
 		var blogID = getQueryString('id');
 		var comment = $('.comment_post').val();
