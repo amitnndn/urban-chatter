@@ -35,7 +35,7 @@ div.description, div.author_text{font-size: 12px; line-height: 16px; color: #646
 #login_btn{margin-right: 10px;}
 #facebook_login, #facebook_signup{margin-top: 30px;}
 .user_section{font-size: 16px; margin-top: 5px; position: relative;}
-.welcome_message{cursor: pointer; color: #AAA;}
+.welcome_message{cursor: pointer; color: #AAA; font-weight: bold;}
 .welcome_message span{font-size: 12px; font-weight: normal; color: #0096d6; margin-left: 10px;}
 .user_options{width: 200px; position: absolute; background-color: #FFEF93; top: 150%; right: -5px; z-index: 999; display: none; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;}
 .user_options a{display: block; width: 100%; padding: 10px; border-bottom: 1px solid #797575; font-size: 14px; color: #797575}
