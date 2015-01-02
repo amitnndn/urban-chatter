@@ -201,7 +201,7 @@ $(document).ready(function(){
 		var thisComment = $(this).parent();
 		deleteCommentObj = {id : thisCommentID};
 		$.ajax({
-			url : '/comment/delete/'
+			url : '/comment/delete/',
 			method : 'POST',
 			dataType : 'json',
 			contentType : 'application/json',
