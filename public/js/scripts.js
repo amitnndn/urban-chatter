@@ -196,6 +196,29 @@ $(document).ready(function(){
 		}
 	})
 
+	$(document).on('click', '.delete_comment', function(){
+		var thisCommentID = $(this).attr('id');
+		var thisComment = $(this).parent();
+		deleteCommentObj = {id : thisCommentID};
+		$.ajax({
+			url : '/comment/delete/'
+			method : 'POST',
+			dataType : 'json',
+			contentType : 'application/json',
+			data : JSON.stringify(deleteCommentObj),
+			success : function(response){
+				if(response.status == 1){
+					thisComment.remove()
+				}else{
+					alert('Comment could not be deleted')
+				}
+			},
+			error : function(response){
+				alert('Error Occured');
+			}
+		})
+	})
+
 	$(document).on('click', '.dislikes a', function(){
 		var blogID = getQueryString('id');
 		var thisButton = $(this);
@@ -249,7 +272,7 @@ $(document).ready(function(){
 				success : function(response){
 					if(response.status == 1){
 						var commentHTML = $.parseHTML(unescape(response.html_content));
-						$('.comment_section').html(commentHTML);
+						$('.comments_parent').append(commentHTML);
 					}else{
 						alert(response.message);
 					}
