@@ -266,7 +266,7 @@ $(document).ready(function(){
 			success : function(response){
 				if(response.status == 1){
 					alert('Your Post has been deleted');
-					location.href() = '/'
+					window.location() = '/'
 				}else{
 					alert('Your Post could not be deleted')
 				}
