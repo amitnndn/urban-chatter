@@ -273,6 +273,7 @@ $(document).ready(function(){
 					if(response.status == 1){
 						var commentHTML = $.parseHTML(unescape(response.html_content));
 						$('.comments_parent').append(commentHTML);
+						$('textarea.comment_post').value('');
 					}else{
 						alert(response.message);
 					}
