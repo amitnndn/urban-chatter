@@ -34,6 +34,7 @@ function createSection(sectionData, containerName){
 		HTML += '<div class="thumbnail_content">';
 		HTML += '<a href="/view-post/?id='+sectionData[i].post_id+'" class="thumbnail">';
 		HTML += '<h4 class="title">'+sectionData[i].title+'</h4>';
+		HTML += '<div class="author"><a href="/view-author/?id='+sectionData[i].author_id+'">'+sectionData[i].author+'</a></div>';
 		HTML += '<div class="description">'+sectionData[i].description+'</div>';
 		HTML += '<div style="margin-top: 0" class="likes_section pull-left">';
 		HTML += '<div style="margin-right:15px" class="pull-left">';
