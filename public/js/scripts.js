@@ -401,6 +401,47 @@ $(document).ready(function(){
 		}
 	})
 
+	$(document).on('click', '#profile_edit', function(){
+
+		var noErrors = true;
+
+		$('#profile_page .form-group').each(function(){
+			var thisInput = $(this).find('input');
+			if(!thisInput.val()){
+				noErrors = false;
+				var thisField = thisInput.parent().find('label').text();
+				alert('Please ensure that the ' +thisField+ ' is not empty');
+				return false;
+			}
+		})
+
+		if(noErrors){
+			var submitObj = {};
+			submitObj.first_name = $('input#first_name').val();
+			submitObj.last_name = $('input#last_name').val();
+			submitObj.email = $('input#email').val();
+
+			$.ajax({
+				url : '/user/update',
+				method : 'POST',
+				dataType : 'json',
+				contentType: "application/json",
+				data : JSON.stringify(submitObj),
+				success : function(response){
+					alert(response.message);
+					if(response.status == 1){
+						location.reload();
+					}
+				},
+				error : function(response){
+					alert('Error Occured')
+				}
+			})
+
+		}
+
+	})
+
 	$(document).on('click', '#change_password_submit', function(){
 		
 		var noErrors = true;
@@ -415,7 +456,7 @@ $(document).ready(function(){
 			}
 		})
 
-		
+
 
 		if(noErrors === true && $('#new_password').val() !== $('#reenter_new_password').val()){
 			noErrors = false;
