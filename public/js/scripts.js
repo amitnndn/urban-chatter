@@ -405,7 +405,7 @@ $(document).ready(function(){
 
 		var noErrors = true;
 
-		$('#profile_page .form-group').each(function(){
+		$('#profile_page #home .form-group').each(function(){
 			var thisInput = $(this).find('input');
 			if(!thisInput.val()){
 				noErrors = false;
