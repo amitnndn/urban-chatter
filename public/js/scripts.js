@@ -94,6 +94,7 @@ $(document).ready(function(){
 		
 		if(noErrors){
 			var userObj = {};
+			userObj.fb_login = false;
 			userObj.username = $('#login_modal #username').val();
 			userObj.password = $('#login_modal #password').val();
 			$.ajax({
@@ -401,6 +402,7 @@ $(document).ready(function(){
 
 		if(noErrors){
 			var submitObj = {};
+			submitObj.fb_login = false;
 			submitObj.first_name = $('#first_name').val();
 			submitObj.last_name = $('#last_name').val();
 			submitObj.email = $('#email').val();
