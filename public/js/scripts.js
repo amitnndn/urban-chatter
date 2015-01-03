@@ -401,4 +401,49 @@ $(document).ready(function(){
 		}
 	})
 
+	$(document).on('click', '#change_password_submit', function(){
+		
+		var noErrors = true;
+
+		$('#password_modal .form-group').each(function(){
+			var thisInput = $(this).find('input');
+			if(!thisInput.val()){
+				noErrors = false;
+				var thisField = thisInput.parent().find('label').text();
+				alert('Please ensure that the ' +thisField+ ' is not empty');
+				return false;
+			}
+
+			if(noErrors === true && $('#new_password').val() !== $('#reenter_new_password').val()){
+				noErrors = false;
+				alert('Please ensure that the Passwords match');
+			}
+
+			if(noErrors){
+				var submitObj = {};
+				submitObj.old_password = $('#old_password').val();
+				submitObj.new_password = $('#new_password').val();
+
+				$.ajax({
+					url : '/login/change-password',
+					method : 'POST',
+					dataType : 'json',
+					contentType : 'application/json',
+					data : JSON.stringify(submitObj),
+					success : function(response){
+						alert(response.message);
+						if(response.status == 1){
+							$('#password_modal').modal('hide')
+						}
+					},
+					error : function(response){
+						alert('Error Occured');
+					}
+				})
+
+			}
+
+		})
+	})
+
 })
