@@ -364,6 +364,7 @@ $(document).ready(function(){
 				data : JSON.stringify(commentObj),
 				success : function(response){
 					if(response.status == 1){
+						$('.comment_none').remove();
 						var commentHTML = $.parseHTML(unescape(response.html_content));
 						$('.comments_parent').append(commentHTML);
 						$('textarea.comment_post').val('');
