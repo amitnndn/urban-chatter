@@ -77,6 +77,8 @@ a.thumbnail span.fa.fa-thumbs-down{color: #A60000}
 #change_password{margin-bottom: 15px; float: left; width: auto;}
 #password_modal .modal-body.row{margin: 0;}
 div.description, div.author_text{height: 100px; overflow: hidden;}
+.thumbnail div.description h1, .thumbnail div.description h2, .thumbnail div.description h3, .thumbnail div.description h4, .thumbnail div.description h5, .thumbnail div.description h6{font-weight: normal; font-size: 12px !important;}
+.thumbnail div.description{font-size: 12px !important;}
 
 @media(max-width: 960px){
 	.create_content, .blog_content, .profile_content{width: 100%; padding: 70px 20px 0;}
