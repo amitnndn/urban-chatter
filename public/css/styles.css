@@ -41,8 +41,9 @@ div.description, div.author_text{font-size: 12px; line-height: 16px; color: #646
 .user_options a{display: block; width: 100%; padding: 10px; border-bottom: 1px solid #797575; font-size: 14px; color: #797575}
 .user_options a.logout{border: 0 none;}
 .user_options a span.glyphicon{margin-right: 10px;}
-.create_content, .blog_content{width: 960px; margin: 0 auto; padding-top: 70px;}
-.create_content h2, .blog_content h2{font-size: 36px; text-align: center; font-weight: normal; margin-bottom: 40px;}
+.create_content, .blog_content, .profile_content{width: 960px; margin: 0 auto; padding-top: 70px;}
+.create_content h2, .blog_content h2, .profile_content h2{font-size: 36px; text-align: center; font-weight: normal; margin-bottom: 40px;}
+.profile_content h2{text-align: left; color: #0096d6;}
 #post_create{font-size: 14px;}
 #post_create .form-group{margin-bottom: 20px;}
 #post_create label{font-size: 16px; font-weight: normal;}
@@ -68,14 +69,17 @@ a.username{font-size: 14px;}
 .comment_label{font-size: 14px; font-weight: bold; margin-bottom: 5px; display: block;}
 
 @media(max-width: 960px){
-	.create_content, .blog_content{width: 100%; padding: 70px 20px 0;}
+	.create_content, .blog_content, .profile_content{width: 100%; padding: 70px 20px 0;}
 }
 
 @media(max-width: 767px){
 	.author_profile{float: left; width: 30%; margin-right: 5%;}
 	.author_desc{float: left; width: 65%;}
 	.author_desc h4, .author_text{text-align: left;}
-	.create_content h2, .blog_content h2{font-size: 24px;}
+	.create_content h2, .blog_content h2, .profile_content h2{font-size: 24px;}
+	.profile_content h2{margin-bottom: 20px;}
+	#profile_page .profile-nav, #profile_page .profile-nav-content{padding: 0;}
+	#profile_page .profile-nav{margin-bottom: 20px;}
 }
 
 @media(max-width: 480px){

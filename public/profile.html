@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Urban Chatter - The city's chaos. Organized.</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/styles.css" />
+	</head>
+	<body>
+		<div id="profile_page" class="container-fluid">
+			<header class="secondary">
+			</header>
+			<div class="profile_content">
+				<h2>My Profile</h2>
+				<div role="tabpanel">
+					<div class="col-sm-3 profile-nav">
+						<ul class="nav nav-pills nav-stacked">
+							<li role="presentation" class="active">
+								<a href="#home" aria-controls="home" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-user"></span> My Profile</a>
+							</li>
+							<li role="presentation">
+								<a href="http://www.google.com"><span class="glyphicon glyphicon-edit"></span> Create a New Post</a>
+							</li>
+							<li role="presentation">
+								<a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-comment"></span> View my Posts</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-sm-9 profile-nav-content">
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane fade in active" id="home">
+								<div class="form-group">
+									<label for="first_name">First Name</label>
+									<input type="text" placeholder="Enter First Name" id="first_name" class="form-control" autocomplete="off">
+								</div>
+								<div class="form-group">
+									<label for="last_name">Last Name</label>
+									<input type="text" placeholder="Enter Last Name" id="last_name" class="form-control" autocomplete="off">
+								</div>
+								<div class="form-group">
+									<label for="email">Email Address</label>
+									<input type="email" placeholder="Enter Email Address" id="email" class="form-control" autocomplete="off">
+								</div>
+								<div class="form-group">
+									<label for="email">Enter a Password</label>
+									<input type="password" placeholder="Enter a Password" id="signup_password" class="form-control" autocomplete="off">
+								</div>
+								<div class="form-group">
+									<label for="email">Re-enter Password</label>
+									<input type="password" placeholder="Re-enter Password" id="reenter_password" class="form-control" autocomplete="off">
+								</div>
+								<button class="btn btn-primary" id="signup_submit" type="submit">Submit Changes</button>
+							</div>
+							<div role="tabpanel" class="tab-pane fade" id="messages">
+								<div class="tiles">
+									<div class="col-sm-6 col-xs-12">
+										<a class="thumbnail" href="#">
+											<h4 class="title">Title Name</h4>
+											<div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit. </div>
+											<button type="button" class="pull-right btn btn-primary btn-xs">Read</button>
+											<div class="clearfix"></div>
+										</a>
+									</div>
+									<div class="col-sm-6 col-xs-12">
+										<a class="thumbnail" href="#">
+											<h4 class="title">Title Name</h4>
+											<div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit. </div>
+											<button type="button" class="pull-right btn btn-primary btn-xs">Read</button>
+											<div class="clearfix"></div>
+										</a>
+									</div>
+									<div class="col-sm-6 col-xs-12 last">
+										<a class="thumbnail" href="#">
+											<h4 class="title">Title Name</h4>
+											<div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit. </div>
+											<button type="button" class="pull-right btn btn-primary btn-xs">Read</button>
+											<div class="clearfix"></div>
+										</a>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<script type="text/javascript" src="/js/libs/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="/js/libs/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/libs/jquery.visible.min.js"></script>
+		<script type="text/javascript" src="/js/libs/tinymce.min.js"></script>
+		<script type="text/javascript" src="/js/libs/bootstrap-tagsinput.min.js"></script>
+	</body>
+</html>
