@@ -69,7 +69,7 @@ a.username{font-size: 14px;}
 .comment_label{font-size: 14px; font-weight: bold; margin-bottom: 5px; display: block;}
 #change_password{margin-bottom: 15px; float: left; width: auto;}
 #password_modal .modal-body.row{margin: 0;}
-.thumbnail{height: 175px; overflow: hidden;}
+div.description, div.author_text{height: 100px; overflow: auto;}
 
 @media(max-width: 960px){
 	.create_content, .blog_content, .profile_content{width: 100%; padding: 70px 20px 0;}
