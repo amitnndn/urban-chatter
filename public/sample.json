@@ -1,0 +1,126 @@
+{
+	"status" : 1,
+	"featured" : [
+		{
+			"title" : "Title Name",
+			"author" : "Siddhanth Shetty",
+			"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit.",
+			"post_id" : 30,
+			"author_id" : 20,
+			"likes" : 25,
+			"unlikes" : 36
+		},
+		{
+			"title" : "Title Name",
+			"author" : "Siddhanth Shetty",
+			"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit.",
+			"post_id" : 30,
+			"author_id" : 20,
+			"likes" : 25,
+			"unlikes" : 36
+		},
+		{
+			"title" : "Title Name",
+			"author" : "Siddhanth Shetty",
+			"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit.",
+			"post_id" : 30,
+			"author_id" : 20,
+			"likes" : 25,
+			"unlikes" : 36
+		},
+		{
+			"title" : "Title Name",
+			"author" : "Siddhanth Shetty",
+			"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit.",
+			"post_id" : 30,
+			"author_id" : 20,
+			"likes" : 25,
+			"unlikes" : 36
+		},
+		{
+			"title" : "Title Name",
+			"author" : "Siddhanth Shetty",
+			"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit.",
+			"post_id" : 30,
+			"author_id" : 20,
+			"likes" : 25,
+			"unlikes" : 36
+		}
+	],
+	"recent" : [
+		{
+			"title" : "Title Name",
+			"author" : "Siddhanth Shetty",
+			"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit.",
+			"post_id" : 30,
+			"author_id" : 20,
+			"likes" : 25,
+			"unlikes" : 36
+		},
+		{
+			"title" : "Title Name",
+			"author" : "Siddhanth Shetty",
+			"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit.",
+			"post_id" : 30,
+			"author_id" : 20,
+			"likes" : 25,
+			"unlikes" : 36
+		},
+		{
+			"title" : "Title Name",
+			"author" : "Siddhanth Shetty",
+			"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit.",
+			"post_id" : 30,
+			"author_id" : 20,
+			"likes" : 25,
+			"unlikes" : 36
+		},
+		{
+			"title" : "Title Name",
+			"author" : "Siddhanth Shetty",
+			"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit.",
+			"post_id" : 30,
+			"author_id" : 20,
+			"likes" : 25,
+			"unlikes" : 36
+		}
+	],
+	"new" : [
+		{
+			"title" : "Title Name",
+			"author" : "Siddhanth Shetty",
+			"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit.",
+			"post_id" : 30,
+			"author_id" : 20,
+			"likes" : 25,
+			"unlikes" : 36
+		},
+		{
+			"title" : "Title Name",
+			"author" : "Siddhanth Shetty",
+			"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit.",
+			"post_id" : 30,
+			"author_id" : 20,
+			"likes" : 25,
+			"unlikes" : 36
+		},
+		{
+			"title" : "Title Name",
+			"author" : "Siddhanth Shetty",
+			"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit.",
+			"post_id" : 30,
+			"author_id" : 20,
+			"likes" : 25,
+			"unlikes" : 36
+		},
+		{
+			"title" : "Title Name",
+			"author" : "Siddhanth Shetty",
+			"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus pellentesque, posuere augue a, suscipit lorem. Mauris vehicula arcu lacus. Nulla suscipit pharetra mollis. Nunc et sodales mauris. Curabitur fermentum rutrum ipsum, molestie sodales dui convallis vitae. Curabitur feugiat dictum porttitor. Morbi non mattis sapien, quis elementum elit. Sed ac magna et risus laoreet egestas quis ac elit.",
+			"post_id" : 30,
+			"author_id" : 20,
+			"likes" : 25,
+			"unlikes" : 36
+		}
+	]
+}

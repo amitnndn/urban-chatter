@@ -60,8 +60,12 @@ a.username{font-size: 14px;}
 .blog_post, .tags{margin-top: 20px; font-size: 14px; line-height: 24px;}
 .likes_section{margin-top: 20px;}
 .likes{margin-right: 25px; width: auto;}
-.likes_section a.fa.fa-thumbs-up.liked, .likes_section a.fa.fa-thumbs-down.disliked{color: #0096d6; font-size: 21px;}
+.likes_section a.fa.fa-thumbs-up.liked, .likes_section a.fa.fa-thumbs-down.disliked{font-size: 21px;}
+.likes_section a.fa.fa-thumbs-up.liked{color: #109820}
+.likes_section a.fa.fa-thumbs-down.disliked{color: #A60000}
 .likes_section a.fa.fa-thumbs-up.like, .likes_section a.fa.fa-thumbs-down.dislike{color: #bababa; font-size: 21px;}
+a.thumbnail span.fa.fa-thumbs-up{color: #109820}
+a.thumbnail span.fa.fa-thumbs-down{color: #A60000}
 .comment_section{margin-top: 20px;}
 .comment{padding: 10px; margin-bottom: 5px; background-color: #DCDCDC;}
 .comment div.author{text-decoration: none;}
