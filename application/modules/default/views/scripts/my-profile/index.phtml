@@ -1,0 +1,112 @@
+<?php
+	$response = $this->response;
+	if($response['status'] == 0){
+		echo "405 Forbidden";
+		exit;
+	}
+?>
+<body>
+		<div id="profile_page" class="container-fluid">
+			<header class="secondary">
+			</header>
+			<div class="profile_content">
+				<h2>My Profile</h2>
+				<div role="tabpanel">
+					<div class="col-sm-3 profile-nav">
+						<ul class="nav nav-pills nav-stacked">
+							<li role="presentation" class="active">
+								<a href="#home" aria-controls="home" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-user"></span> My Profile</a>
+							</li>
+							<li role="presentation">
+								<a href="/create-post"><span class="glyphicon glyphicon-edit"></span> Create a New Post</a>
+							</li>
+							<li role="presentation">
+								<a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-comment"></span> View my Posts</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-sm-9 profile-nav-content">
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane fade in active" id="home">
+								<div class="form-group">
+									<label for="first_name">First Name</label>
+									<input type="text" placeholder="Enter First Name" id="first_name" class="form-control" autocomplete="off" value='<?php echo $this->fname;?>'>
+								</div>
+								<div class="form-group">
+									<label for="last_name">Last Name</label>
+									<input type="text" placeholder="Enter Last Name" id="last_name" class="form-control" autocomplete="off" value='<?php echo $this->lname;?>'>
+								</div>
+								<div class="form-group">
+									<label for="email">Email Address</label>
+									<input type="email" placeholder="Enter Email Address" id="email" class="form-control" autocomplete="off" value='<?php echo $this->email;?>'>
+								</div>
+								<a data-toggle="modal" data-target="#password_modal" id="change_password">Change Password</a>
+								<div class="clearfix"></div>
+								<button class="btn btn-primary" id="profile_edit" type="submit">Submit Changes</button>
+							</div>
+							<div role="tabpanel" class="tab-pane fade" id="messages">
+								<div class="tiles">
+								<?php 
+									$posts = $this->posts;
+									foreach($posts as $a){
+								?>
+									<div class="col-sm-6 col-xs-12">
+										<a class="thumbnail" href="/view-post/?id=<?php echo $a['id']?>">
+											<h4 class="title"><?php echo $a['title'];?></h4>
+											<div class="description"><?php echo $a['content'];?></div>
+											<div class="likes_section pull-left" style='margin-top: 0'>
+											<div class="pull-left" style="margin-right:15px">
+											<span class="fa fa-thumbs-up"></span> <?php echo $a['likes'];?>
+											</div>
+											<div class="pull-left">
+											<span class="fa fa-thumbs-down"></span> <?php echo $a['dislikes'];?>
+											</div>
+											<div class="clearfix"></div>
+											</div>
+											<button type="button" class="pull-right btn btn-primary btn-xs">Read</button>
+											<div class="clearfix"></div>
+										</a>
+									</div>
+								<?php 
+									}
+								?>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="modal fade bs-example-modal-lg" id="password_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">Change Password</h4>
+						</div>
+						<div class="modal-body row">
+							<div class="form-group">
+								<label for="old_password">Enter Old Password</label>
+								<input type="password" placeholder="Enter Old Password" id="old_password" class="form-control" autocomplete="off">
+							</div>
+							<div class="form-group">
+								<label for="old_password">Enter New Password</label>
+								<input type="password" placeholder="Enter New Password" id="new_password" class="form-control" autocomplete="off">
+							</div>
+							<div class="form-group">
+								<label for="old_password">Re-enter New Password</label>
+								<input type="password" placeholder="Re-enter New Password" id="reenter_new_password" class="form-control" autocomplete="off">
+							</div>
+							<button class="btn btn-primary" id="change_password_submit" type="submit">Change Password</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="/js/libs/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="/js/libs/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/libs/jquery.visible.min.js"></script>
+		<script type="text/javascript" src="/js/libs/tinymce.min.js"></script>
+		<script type="text/javascript" src="/js/libs/bootstrap-tagsinput.min.js"></script>
+	</body>

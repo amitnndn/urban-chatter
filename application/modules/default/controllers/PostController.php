@@ -18,6 +18,110 @@
 				exit;
 			}
 		}
+		public function getHomepageAction(){
+			$db = Zend_Db_Table::getDefaultAdapter();
+			$select = $db->select()
+						 ->from("users")
+						 ->order(array('id DESC'))
+						 ->limit(2);
+			$data = $db->query($select)->fetchAll();
+			$posts = array(
+					"status" => 1,
+					"featured" => array(),
+					"new" => array(),
+					"recent" => array()
+			);
+			$recent_new_user = array();
+			$posts = array();
+			$temp_post = array();
+			$featured_post = array();
+			foreach($data as $a){
+				$author_name = $a['fname']." ".$a['lname'];
+				$author_id = $a['id'];
+				$select = $db->select()
+							 ->from("posts")
+							 ->where("user_id = ".$a['id']);
+				try{
+					$data1 = $db->query($select)->fetchAll();
+				}
+				catch(Exception $exception){
+					echo $exception;					
+				}
+				if(empty($data1)){
+					continue;
+				}
+				foreach($data1 as $b){
+					array_push($recent_new_user,$b['id']);
+					$title = $b['title'];
+					$description = $b['content'];
+					$post_id = $b['id'];
+					$likes = $b['likes'];
+					$unlikes = $b['dislikes'];
+				}
+				$post = array(
+					"title" => $title,
+					"description" => $description,
+					"url" => $post_id,
+					"author_id" => $author_id,
+					"likes" => $likes,
+					"unlikes" => $unlikes
+				);
+				if($post_id == 29){
+					array_push($featured_post,$post);
+				}
+				else{
+					array_push($temp_post,$post);
+				}
+			}
+			$posts["new"] = $temp_post;
+			$posts["featured"] = $featured_post;
+			$select = $db->select()
+						 ->from("posts")
+						 ->order(array('id DESC'))
+						 ->limit(10);
+			$data = $db->query($select)->fetchAll();
+			$recent_id = array();
+			$temp_post = array();
+			foreach($data as $a){
+				if(in_array($a['id'],$recent_new_user)){
+					continue;
+				}
+				$title = $a['title'];
+				if($a['user_id'] == null){
+					continue;
+				}
+				$select = $db->select()
+							 ->from("users")
+							 ->where("id = ".$a['user_id']);
+				try{
+					$data1 = $db->query($select)->fetchAll();
+				}
+				catch(Exception $exception){
+					echo $select;
+					echo $exception;
+				}
+				foreach($data1 as $b){
+					$author_name = $b['fname']." ".$b['lname'];
+				}
+				$description = $a['content'];
+				$post_id = $a['id'];
+				$likes = $a['likes'];
+				$unlikes = $a['dislikes'];
+				$post = array(
+					"title" => $title,
+					"author" => $author_name,
+					"author_id" => $a['user_id'],
+					"description" => $description,
+					"post_id" => $post_id,
+					"likes" => $likes,
+					"unlikes" => $unlikes
+				);
+				array_push($temp_post,$post);
+			}
+			$posts["recent"] = $temp_post;
+			$posts["status"] = 1;
+			echo json_encode($posts);
+		}
 		public function getPartAction(){
 			$params = $this->_getAllParams();
 			$id = $params['id'];

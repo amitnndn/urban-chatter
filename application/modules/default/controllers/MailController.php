@@ -82,14 +82,7 @@
 							font-size:12px; color:#646464; line-height:18px;'>Username</td>
 							    <td width='218' style='font-family:Arial, Helvetica, sans-serif;
 							font-size:12px; color:#646464;
-							line-height:18px;'><strong>siddhanths@gmail.com</strong></td>
-							  </tr>
-							  <tr>
-							    <td style='font-family:Arial, Helvetica, sans-serif;
-							font-size:12px; color:#646464; line-height:18px;'>Password</td>
-							    <td style='font-family:Arial, Helvetica, sans-serif;
-							font-size:12px; color:#646464;
-							line-height:18px;'><strong>testpassword</strong></td>
+							line-height:18px;'><strong>$email</strong></td>
 							  </tr>
 							</table>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit

@@ -11,6 +11,49 @@
 		public function indexAction(){
 			
 		}
+		public function updateAction(){
+			$session = $this->session_authenticate();
+			$request = $this->getRequest();
+			$rawBody = $request->getRawBody();
+			$input = json_decode($rawBody);
+			if($session['status'] == 0){
+				$reponse = array(
+					"status" => 0,
+					"message" => "User must be logged in"
+				);
+				echo json_response($response);
+				return;
+			}
+			$user_id = $session['userid'];
+			$db = Zend_Db_Table::getDefaultAdapter();
+			$fname = $input->first_name;
+			$lname = $input->last_name;
+			$email = $input->email;
+			$input = array(
+				"fname" => $fname,
+				"lname" => $lname,
+				"email" => $email
+			);
+			$where = array(
+				"id = ?" => $user_id
+			);
+			try{
+				$db->update("users",$input,$where);
+			}
+			catch(Exception $exception){
+				$response = array(
+					"status" => 0,
+					"message" => "Oops! Something went wrong"
+				);
+				echo json_encode($response);
+				return;
+			}
+			$response = array(
+				"status" => 1,
+				"message" => "Updated"
+			);
+			echo json_encode($response);
+		}
 		public function getAction(){
 		    $params = $this->_getAllParams();
 		    $id = $params['id'];
@@ -45,7 +88,7 @@
 			$lname = $data->last_name;
 			$email = $data->email;
 			$passwd = $data->password;
-			$fb_login = $params['fb_login'];
+			$fb_login = $data->fb_login;
 			$db = Zend_Db_Table::getDefaultAdapter();
 			$select = $db->select()
 						 ->from("users")
@@ -117,7 +160,8 @@
 			else{
 				$data = array(
 					"status" => 1,
-					"username" => $username
+					"username" => $username,
+					"userid" => $session->userid
 				);
 				return $data;
 			}

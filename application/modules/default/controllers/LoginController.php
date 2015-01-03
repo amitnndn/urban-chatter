@@ -89,6 +89,58 @@
 			}
 			echo json_encode($response);
 		}
+		public function changePasswordAction(){
+			$session = $this->session_authenticate();
+			$db = Zend_Db_Table::getDefaultAdapter();
+			$user_id = $session['userid'];
+			if($session['status'] == 0){	
+				$response = array(
+					"status" => 0,
+					"message" => "User not logged in"
+				);
+				echo json_encode($response);
+				return;
+			}
+			$request = $this->getRequest();
+			$rawBody = $request->getRawBody();
+			$input = json_decode($rawBody);
+			$old_password = md5($input->old_password);
+			$new_password = md5($input->new_password);
+			$select = $db->select()
+					 	 ->from("users")
+					 	 ->where("passwd LIKE '$old_password' AND id = $user_id");
+			$data = $db->query($select)->fetchAll();
+			if(empty($data)){
+				$response = array(
+					"status" => 0,
+					"message" => "Invalid Password"
+				);
+				echo json_encode($response);
+				return;
+			}
+			$data = array(
+				"passwd" => $new_password
+			);
+			$where = array(
+				"id = ?" => $user_id
+			);
+			try{
+				$db->update("users",$data,$where);
+			}
+			catch(Exception $exception){
+				$response = array(
+					"status" => 0,
+					"message" => "Something went wrong. Please try again"
+				);
+				echo json_encode($response);
+				return;
+			}
+			$response = array(
+				"status" => 1,
+				"message" => "Password changed"
+			);
+			echo json_encode($response);
+		}
 		protected function session_authenticate(){
 			$session = new Zend_Session_Namespace('login');
 			$username = $session->username;
@@ -101,7 +153,8 @@
 			else{
 				$data = array(
 					"status" => 1,
-					"username" => $username
+					"username" => $username,
+					"userid" => $session->userid
 				);
 				return $data;
 			}

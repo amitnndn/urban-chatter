@@ -5,3 +5,7 @@ RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
+SetEnvIf HTTP_HOST localhost APPLICATION_ENV=development
+SetEnvIf HTTP_HOST 127.0.0.1 APPLICATION_ENV=development
+SetEnvIf HTTP_HOST urban-chatter APPLICATION_ENV=development
+SetEnvIf HTTP_HOST urban-chatter.in APPLICATION_ENV=production
