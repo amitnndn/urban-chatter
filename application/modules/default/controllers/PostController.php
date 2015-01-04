@@ -8,22 +8,13 @@
 			$data = $this->session_authenticate();
 			$this->getResponse()
 			->setHeader('Content-type','application/json');
-			$_userid = $data["userid"];
-			if($data["status"] == 0){
-				$response = array(
-					"message" => "User is not logged in.",
-					"userid" => $_userid
-				);
-				echo json_encode($response);
-				exit;
-			}
 		}
 		public function getHomepageAction(){
 			$db = Zend_Db_Table::getDefaultAdapter();
 			$select = $db->select()
 						 ->from("users")
 						 ->order(array('id DESC'))
-						 ->limit(2);
+						 ->limit(5);
 			$data = $db->query($select)->fetchAll();
 			$posts = array(
 					"status" => 1,
@@ -57,20 +48,21 @@
 					$post_id = $b['id'];
 					$likes = $b['likes'];
 					$unlikes = $b['dislikes'];
-				}
-				$post = array(
-					"title" => $title,
-					"description" => $description,
-					"url" => $post_id,
-					"author_id" => $author_id,
-					"likes" => $likes,
-					"unlikes" => $unlikes
-				);
-				if($post_id == 29){
-					array_push($featured_post,$post);
-				}
-				else{
-					array_push($temp_post,$post);
+					$post = array(
+							"title" => $title,
+							"description" => $description,
+							"post_id" => $post_id,
+							"author_id" => $author_id,
+							"likes" => $likes,
+							"unlikes" => $unlikes,
+							"author" => $author_name
+					);
+					if($post_id == 29){
+						array_push($featured_post,$post);
+					}
+					else{
+						array_push($temp_post,$post);
+					}
 				}
 			}
 			$posts["new"] = $temp_post;
@@ -214,6 +206,15 @@
 		}
 		public function createAction(){
 			$data = $this->session_authenticate();
+			$_userid = $data["userid"];
+			if($data["status"] == 0){
+				$response = array(
+						"message" => "User is not logged in.",
+						"userid" => $_userid
+				);
+				echo json_encode($response);
+				exit;
+			}
 			$user_id = $data["userid"];
 			$request = $this->getRequest();
 			$rawBody = $request->getRawBody();
@@ -284,6 +285,15 @@
 		}
 		public function deleteAction(){
 			$session = $this->session_authenticate();
+			$_userid = $session["userid"];
+			if($session["status"] == 0){
+				$response = array(
+						"message" => "User is not logged in.",
+						"userid" => $_userid
+				);
+				echo json_encode($response);
+				exit;
+			}
 			$user_id = $session['userid'];
 			$params = $this->_getAllParams();
 			$request = $this->getRequest();
@@ -334,6 +344,15 @@
 		}
 		public function updateAction(){
 			$session = $this->session_authenticate();
+			$_userid = $session["userid"];
+			if($session["status"] == 0){
+				$response = array(
+						"message" => "User is not logged in.",
+						"userid" => $_userid
+				);
+				echo json_encode($response);
+				exit;
+			}
 			$userid = $session['userid'];
 			$request = $this->getRequest();
 			$rawBody = $request->getRawBody();
