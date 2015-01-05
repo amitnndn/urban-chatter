@@ -22,6 +22,7 @@
 				$email = $a['email'];
 				$username = $a['fname']." ".$a['lname'];
 			}
+			$path = array("http://".$_SERVER['HTTP_HOST']."/images/mailer_hdr.jpg","http://".$_SERVER['HTTP_HOST']."/images/button.jpg");
 			try{
 				$message = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
 							'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
@@ -35,7 +36,7 @@
 							    <table width='652' border='0' cellspacing='0' cellpadding='0'
 							style='border: 1px solid #646464;' align='center'>
 							        <tr>
-							            <td><img src='http://beta.urbanchatter.in/images/mailer_hdr.jpg' width='650' height='100'
+							            <td><img src='".$path[0]."' width='650' height='100'
 							style='display:block;' /></td>
 							        </tr>
 							        <tr>
@@ -99,7 +100,7 @@
 							suscipit. Etiam euismod sit amet nulla ac venenatis. Nunc non
 							vestibulum ante, ac laoreet elit. In justo orci, convallis eget massa
 							et, facilisis pellentesque lorem. </p>
-							<p><a href='' target='_blank'><img src='http://beta.urbanchatter.in/images/button.jpg' width='200'
+							<p><a href='' target='_blank'><img src='".$path[1]."' width='200'
 							height='42' border='0' /></a></p>
 							            </td>
 							        </tr>
