@@ -35,7 +35,7 @@
 							    <table width='652' border='0' cellspacing='0' cellpadding='0'
 							style='border: 1px solid #646464;' align='center'>
 							        <tr>
-							            <td><img src='http://urbanchatter.in/images/mailer_hdr.jpg' width='650' height='100'
+							            <td><img src='http://beta.urbanchatter.in/images/mailer_hdr.jpg' width='650' height='100'
 							style='display:block;' /></td>
 							        </tr>
 							        <tr>
@@ -99,7 +99,7 @@
 							suscipit. Etiam euismod sit amet nulla ac venenatis. Nunc non
 							vestibulum ante, ac laoreet elit. In justo orci, convallis eget massa
 							et, facilisis pellentesque lorem. </p>
-							<p><a href='' target='_blank'><img src='http://urbanchatter.in/images/button.jpg' width='200'
+							<p><a href='' target='_blank'><img src='http://beta.urbanchatter.in/images/button.jpg' width='200'
 							height='42' border='0' /></a></p>
 							            </td>
 							        </tr>
