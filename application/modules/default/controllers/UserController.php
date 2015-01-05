@@ -136,6 +136,8 @@
 				return;
 			}
 			$last_insert_id = $db->lastInsertId();
+			$q = new ZendJobQueue();
+			$q->createHttpJob("http://".$_SERVER['HTTP_HOST']."/mail/welcome-mail/?id=$last_insert_id");
 			$response = array(
 				"status" => 1,
 				"registration" => "Successful",
