@@ -39,7 +39,12 @@
 			$input = json_decode($rawBody);
 			$session = new Zend_Session_Namespace('login');
 			$db = Zend_Db_Table::getDefaultAdapter();
-			$userName = $input->username;
+			if($request->getPathInfo() == "/user/create"){
+				$userName = $input->email;
+			}
+			else{
+				$userName = $input->username;
+			}
 			$select = $db->select()
 					   ->from("users")
 					   ->where("email LIKE \"$userName\"");
@@ -87,7 +92,11 @@
 					}
 				}
 			}
-			echo json_encode($response);
+			if($request->getPathInfo() == "/user/create"){
+				return;
+			}
+			else
+				echo json_encode($response);
 		}
 		public function changePasswordAction(){
 			$session = $this->session_authenticate();

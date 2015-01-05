@@ -80,7 +80,7 @@
 			$rawBody = $request->getRawBody();
 			$d = $this->session_authenticate();
 			if($d["status"] == 1){
-				echo "User already logged in";
+				echo "User already logged in ".$d['username'];
 				return;
 			}
 			$data = json_decode($rawBody);
@@ -88,7 +88,9 @@
 			$lname = $data->last_name;
 			$email = $data->email;
 			$passwd = $data->password;
-			$fb_login = $data->fb_login;
+			$passwd_org = $passwd;
+			if($data->fb_login == false)
+				$fb_login = 0;
 			$db = Zend_Db_Table::getDefaultAdapter();
 			$select = $db->select()
 						 ->from("users")
@@ -138,9 +140,14 @@
 			$last_insert_id = $db->lastInsertId();
 			$q = new ZendJobQueue();
 			$q->createHttpJob("http://".$_SERVER['HTTP_HOST']."/mail/welcome-mail/?id=$last_insert_id");
+			$login = $this->_forward("user-login","login",array(
+				"username" => $email,
+				"passwd" => $passwd_org,
+				"fb_login" => $fb_login
+			));
 			$response = array(
 				"status" => 1,
-				"registration" => "Successful",
+				"message" => "Successful",
 				"user_id" => $last_insert_id,
 				"user_name" => $fname." ".$lname,
 				"html_content" => $config['loggedin']['true']
